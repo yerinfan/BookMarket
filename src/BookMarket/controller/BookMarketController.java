@@ -48,7 +48,7 @@ public class BookMarketController {
 
 			}
 		} while (menu != 0);
-		view.showMessage("Haejun's BookMarket을 종료합니다.");
+		view.showMessage("YeEun's BookMarket을 종료합니다.");
 
 	}
 

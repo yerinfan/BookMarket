@@ -3,46 +3,36 @@ package BookMarket.model;
 import java.util.ArrayList;
 
 public class Cart {
-
-	ArrayList<CartItem> itemList = new ArrayList<>();
-	int numItem = 0;
+	
+	//private CartItem[] itemList = new CartItem[64];
+	private ArrayList<CartItem> itemList = new ArrayList<>();
+	//private int numItem = 0;
 	
 	public boolean isEmpty() {
-		return numItem == 0;
+		return itemList.isEmpty();
 	}
 
 	public int getNumItem() {
-		return numItem;
-	}
-
-	public void setNumItem(int numItem) {
-		this.numItem = numItem;
+		return itemList.size();
 	}
 	
 	public ArrayList<CartItem> getItemList() {
 		return itemList;
 	}
 
-	public void setItemList(ArrayList<CartItem> itemList) {
-		this.itemList = itemList;
-	}
-
 	public String getItemInfo(int index) {
-		return itemList.toString();
+		return itemList.get(index).toString();
 	}
 
-	public void resetCart() {
-		
-		numItem = 0;
-		
-		this.itemList.clear();;
+	public void resetCart() {	
+		this.itemList.clear();
 	}
 
-	public void addItem(CartItem book) {
+	public void addItem(Book book) {
 
 		CartItem item = getCartItem(book);
 		if (item == null) {
-			itemList.add(book);
+			itemList.add(new CartItem(book));
 		} else {
 			item.addQuantity(1);
 		}
@@ -50,13 +40,12 @@ public class Cart {
 		
 	}
 
-	private CartItem getCartItem(CartItem book) {
+	private CartItem getCartItem(Book book) {
 		
 		for(CartItem item : itemList) {
-			if (item.equals(book))
+			if (item.getBook() == book)
 				return item;
-		}
-		
+		}	
 		return null;
 	}
 
